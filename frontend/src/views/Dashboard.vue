@@ -1,10 +1,16 @@
 <template>
   <section class="dashboard content">
+    <connect-email :active.sync="showConnectEmail" />
     <header class="columns">
       <div class="column is-two-thirds">
         <h1 class="title is-5">
           {{ $utils.niceDate(new Date()) }}
         </h1>
+      </div>
+      <div class="column has-text-right">
+        <b-button type="is-primary" icon-left="email-plus-outline" @click="showConnectEmail = true">
+          Connect email
+        </b-button>
       </div>
     </header>
 
@@ -154,14 +160,17 @@ import Vue from 'vue';
 import { mapState } from 'vuex';
 import { colors } from '../constants';
 import Chart from '../components/Chart.vue';
+import ConnectEmail from '../components/ConnectEmail.vue';
 
 export default Vue.extend({
   components: {
     Chart,
+    ConnectEmail,
   },
 
   data() {
     return {
+      showConnectEmail: false,
       isChartsLoading: true,
       isCountsLoading: true,
       campaignViews: null,
